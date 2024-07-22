@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619732410479",
+    "project_id": "bigtoy-dde0f",
+    "storage_bucket": "bigtoy-dde0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619732410479:android:55aa9da8a060ccb44d2d9a",
+        "android_client_info": {
+          "package_name": "com.example.bigtoy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQJulgsa4vVeUna06NHAGupXkbb5ljLW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
