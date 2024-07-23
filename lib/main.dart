@@ -1,5 +1,7 @@
+import 'package:bigtoy/details.dart';
 import 'package:bigtoy/home_page.dart';
 import 'package:bigtoy/login_page.dart';
+import 'package:bigtoy/view_car.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return MaterialApp(
-      home: CreatePage(),
+      home: HomePage(),
 
       debugShowCheckedModeBanner: false,
     );

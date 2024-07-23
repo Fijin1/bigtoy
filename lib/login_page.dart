@@ -27,7 +27,7 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: Colors.black,
       body: Form(
         key: formKey,
         child: Column(
@@ -78,12 +78,12 @@ class _CreatePageState extends State<CreatePage> {
                     width: w * 0.27,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(w * 0.03),
-                      border: Border.all(color: Colors.white),
-                      color: Colors.indigo,
+                      border: Border.all(color: Colors.brown,width: w*0.01),
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           blurStyle: BlurStyle.normal,
-                          color: Colors.white.withOpacity(0.15),
+                          color: Colors.grey.withOpacity(0.15),
                           offset: Offset(0, 4),
                           spreadRadius: 15,
                           blurRadius: 15,

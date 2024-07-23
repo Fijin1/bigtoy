@@ -1,6 +1,7 @@
 
 import 'package:bigtoy/addcardetails.dart';
 import 'package:bigtoy/constant/imageconst.dart';
+import 'package:bigtoy/details.dart';
 import 'package:bigtoy/login_page.dart';
 import 'package:bigtoy/view_car.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +24,7 @@ TextEditingController email = TextEditingController();
 class _HomePageState extends State<HomePage> {
   /// Views to display
   List<Widget> views = const [
-    ViewCar(),
+    Details(),
     Add(),
 
 
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       /// You can use an AppBar if you want to
       // appBar: AppBar(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.white,
       //   elevation: 0,
       //   title: const Center(child: Text('BIG TOY')),
       // ),
@@ -49,8 +50,18 @@ class _HomePageState extends State<HomePage> {
         children: [
           /// Pretty similar to the BottomNavigationBar!
           SideNavigationBar(
+            theme: SideNavigationBarTheme(
+                itemTheme: SideNavigationBarItemTheme(
+                    unselectedItemColor: Colors.black,
+                    selectedItemColor: Colors.brown),
+                togglerTheme: SideNavigationBarTogglerTheme(
+                    expandIconColor: Colors.brown),
+                dividerTheme: SideNavigationBarDividerTheme.standard()),
             selectedIndex: selectedIndex,
-            footer: SideNavigationBarFooter(label: InkWell(
+
+            footer: SideNavigationBarFooter(
+
+                label: InkWell(
               onTap: () {
                 showCupertinoModalPopup(context: context, builder: (context) {
                   return CupertinoAlertDialog(
@@ -87,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             )),
-            header: SideNavigationBarHeader(image: Image.asset(ImageConst.bigtoylogo,width: w*0.06,), title:  Text("BIG TOY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: w*0.012,color: Colors.black),), subtitle: Padding(
+            header: SideNavigationBarHeader(image: Image.asset(ImageConst.bigtoylogo,width: w*0.04,), title:  Text("BIG TOY",style: TextStyle(fontWeight: FontWeight.w700,fontSize: w*0.012,color: Colors.black),), subtitle: Padding(
               padding:  EdgeInsets.only(left:w*0.01),
               child: const Text("Used Cars",style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black),),
             )),
@@ -120,6 +131,7 @@ class _HomePageState extends State<HomePage> {
 
             ],
             onTap: (index) {
+
               setState(() {
                 selectedIndex = index;
               });
