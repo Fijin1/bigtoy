@@ -1,9 +1,10 @@
 
-import 'package:bigtoy/addcardetails.dart';
+import 'package:bigtoy/future/Product/screen/addcardetails.dart';
 import 'package:bigtoy/constant/imageconst.dart';
 import 'package:bigtoy/details.dart';
-import 'package:bigtoy/login_page.dart';
-import 'package:bigtoy/view_car.dart';
+import 'package:bigtoy/future/Product/screen/addproductstream.dart';
+import 'package:bigtoy/future/login_page.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:side_navigation/side_navigation.dart';
@@ -24,8 +25,8 @@ TextEditingController email = TextEditingController();
 class _HomePageState extends State<HomePage> {
   /// Views to display
   List<Widget> views = const [
-    Details(),
-    Add(),
+    AddproductPage(),
+    ProductStream(id: '',)
 
 
 
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               SideNavigationBarItem(
 
                 icon: Icons.details,
-                label: 'View',
+                label: 'add car details',
 
 
               ),
@@ -118,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               // ),
               SideNavigationBarItem(
                 icon: Icons.car_crash,
-                label: 'Add Car Details',
+                label: 'View ',
               ),
               // SideNavigationBarItem(
               //   icon: Icons.import_export,

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({super.key});
@@ -31,18 +31,17 @@ class _CreatePageState extends State<CreatePage> {
       body: Form(
         key: formKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
             Row(
-
 
               children: [
 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
+                    h<=100?Container(
                       height: h*1,
                       width: w*0.5,
 
@@ -57,6 +56,31 @@ class _CreatePageState extends State<CreatePage> {
                             Text("Big Toy",
                               style: GoogleFonts.pacifico(textStyle: TextStyle(
                                   fontSize: 35,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500
+                              )
+
+
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ):Container(
+                      height: h*02,
+                      width: w*0.1,
+
+
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Center(child: Image.asset(ImageConst.bigtoylogo,width: w*0.44,)
+                            // ),
+                            SizedBox(height: h*0.001,),
+                            Text("Big Toy",
+                              style: GoogleFonts.pacifico(textStyle: TextStyle(
+                                  fontSize: 15,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500
                               )

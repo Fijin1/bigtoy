@@ -1,5 +1,4 @@
 
-import 'package:bigtoy/future/Product/screen/addproductstream.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,14 +9,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../constant/color.dart';
 import '../../../main.dart';
 import '../../../model/car_model.dart';
-import 'future/adding/condroller/adding_condroller.dart';
+import '../../adding/condroller/adding_condroller.dart';
+import 'addproductstream.dart';
 
+class AddproductPage extends ConsumerStatefulWidget {
 
-class EditproductPage extends ConsumerStatefulWidget {
- final ProductModel product;
-
-  const EditproductPage({super.key,
-    required this.product
+  const AddproductPage({super.key,
 
   });
 
@@ -25,11 +22,26 @@ class EditproductPage extends ConsumerStatefulWidget {
   ConsumerState createState() => _AddproductPageState();
 }
 
-class _AddproductPageState extends ConsumerState<EditproductPage> {
+class _AddproductPageState extends ConsumerState<AddproductPage> {
   List stats=['Sold','Soldout'];
   String?dropdownValue;
 
+  addPage(){
+    ref.watch(AddproductControllerProvider).addProducts(detail: ProductModel(
+      Date: DateController.text,
+      Carname: CarnameController.text,
+      Model:ModelController.text,
+      Purchasedamount:PurchasedamountController.text,
+      Expanse:ExpanseController.text,
+      Soldamount:SoldamountController.text,
+      dropdownValue:dropdownValue.toString(),
+      images: images,
+      image: coverImage.toString(),
+      uploadedTime: DateTime.now(),
+      ProductId: "",), CategoryId: "");
 
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => ProductStream(id: '',),), (route) => false,);
+  }
   TextEditingController DateController =TextEditingController();
   TextEditingController CarnameController =TextEditingController();
   TextEditingController ModelController =TextEditingController();
@@ -89,35 +101,9 @@ class _AddproductPageState extends ConsumerState<EditproductPage> {
     setState(() {});
   }
 
-  updatefile({required ProductModel detail} ){
-
-    ref.watch(AddproductControllerProvider).updateproduct(detail.copyWith(
-      image: coverImage,
-      Date: DateController.text,
-      Carname: CarnameController.text,
-      dropdownValue:dropdownValue.toString(),
-      Expanse: ExpanseController.text,
-      Model: ModelController.text,
-      Purchasedamount: PurchasedamountController.text,
-      Soldamount: SoldamountController.text
-    ));
-  }
-
   List Size = [];
 
-   @override
-  void initState() {
 
-      DateController.text = widget.product.Date.toString();
-     CarnameController.text =widget.product.Carname.toString();
-      ModelController.text =widget.product.Model.toString();
-      PurchasedamountController.text =widget.product.Purchasedamount.toString();
-      ExpanseController.text=widget.product.Expanse.toString();
-      SoldamountController.text = widget.product.Soldamount.toString();
-      StatusControlller.text = widget.product.dropdownValue.toString();
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -456,7 +442,7 @@ class _AddproductPageState extends ConsumerState<EditproductPage> {
                 print("888888888888888(***********************************************");
                 print(dropdownValue);
                 setState(() {});
-              },
+                },
 
               ),
               // child: TextFormField(
@@ -493,10 +479,10 @@ class _AddproductPageState extends ConsumerState<EditproductPage> {
             ),
             SizedBox(height:h*0.03,),
             GestureDetector(
-                   onTap: () {
-                     updatefile(detail:widget.product );
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => ProductStream(id: ""),));
-                   },
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductStream(id: ""),));
+                addPage();
+              },
               child: Container(
                 height: h * 0.07,
                 width: w * 0.12,
@@ -505,7 +491,7 @@ class _AddproductPageState extends ConsumerState<EditproductPage> {
                     borderRadius: BorderRadius.circular(w * 0.01)),
                 child: Center(
                     child: Text(
-                      "Update Details",
+                      "Submit",
                       style: TextStyle(color:Colors.white),
                     )),
               ),

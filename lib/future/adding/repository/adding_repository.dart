@@ -1,33 +1,35 @@
-import 'package:bigtoy/model/car_model.dart';
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/Provider/provider.dart';
+import '../../../core/provider/provider.dart';
+import '../../../model/car_model.dart';
+import '../../Product/screen/addproductstream.dart';
 
+final AddproductRespositoryProvider=Provider((ref) => AddproductRespository(firestore: ref.watch(firebaseProvider)));
 
-final adminRepositoryProvider=Provider((ref) =>AdminRepository(firestore: ref.watch(firestoreprovider)));
-class AdminRepository {
+class AddproductRespository{
   final FirebaseFirestore _firestore;
+  AddproductRespository({required FirebaseFirestore firestore}):_firestore=firestore;
 
-  AdminRepository({required FirebaseFirestore firestore })
-      :_firestore=firestore;
+  CollectionReference get _category => _firestore.collection("category");
 
-  CollectionReference get _admins => _firestore.collection("details");
-  streamingData(){
-    return _admins.snapshots().map((event) => event.docs.map((e) => CarModel.fromMap(e.data() as Map<String,dynamic>)).toList());
-  }
-
-  car(name,image,purchase,id,expanse,sold){
-    CarModel carModel=CarModel( name: name, image: image,purchase: purchase, id: id,expanse: expanse,sold: sold);
-    _admins.add(carModel.toMap()).then((value){
-      value.update(carModel.copyWith(id: value.id).toMap());
-    });
+  addProduct({ required ProductModel details}) async {
+    return _category.add(details.toJson())
+        .then((value) => value.update(details.copyWith(ProductId: value.id).toJson()));
 
   }
-  deletecar(String id){
-    _admins.doc(id).delete();
+  Stream<List<ProductModel>>productStream(){
+    return _category.snapshots().map((event) =>
+        event.docs.map((e) => ProductModel.fromJson(e.data() as Map<String ,dynamic>) ,).toList(),);
   }
-  update(CarModel carModel){
-    _admins.doc(carModel.id).update(carModel.toMap());
+  deleteProduct(String id){
+    _category.doc(id).delete();
   }
+  updateProduct1(ProductModel detail){
+    _category.doc(detail.ProductId).update(detail.toJson());
+  }
+
+
 }

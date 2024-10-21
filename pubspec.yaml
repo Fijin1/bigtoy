@@ -45,7 +45,7 @@ dependencies:
   side_navigation: ^1.0.4
   firebase_core:
   firebase_storage:
-  #  cloud_functions: ^4.6.0
+  cloud_functions: ^4.6.0
   firebase_auth: ^4.17.5
   cloud_firestore: ^4.15.5
   syncfusion_flutter_charts: ^20.2.49
